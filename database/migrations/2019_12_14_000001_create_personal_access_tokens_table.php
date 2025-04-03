@@ -43,5 +43,23 @@ return new class extends Migration
 
     }
 
+     public function up()
+    {
+        Schema::create('registro_equipos', function (Blueprint $table) {
+            $table->id(); // Clave primaria autoincremental
+            $table->unsignedBigInteger('estudiante_id'); // Relación con estudiante
+            $table->string('nombre_equipo'); // Nombre del equipo
+            $table->string('tipo_equipo'); // Tipo de equipo (Laptop, Tablet, etc.)
+            $table->string('marca'); // Marca del equipo
+            $table->string('modelo'); // Modelo del equipo
+            $table->string('numero_serie')->unique(); // Número de serie único
+            $table->date('fecha_registro'); // Fecha de registro
+            $table->time('hora_entrada'); // Hora de entrada del equipo
+            $table->time('hora_salida')->nullable(); // Hora de salida (puede ser NULL)
+            $table->string('estado'); // Estado (Activo, Retirado, etc.)
+            $table->timestamps(); // Agrega created_at y updated_at automáticamente
+        });
+    }
+
     
 };
